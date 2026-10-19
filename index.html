@@ -35,7 +35,7 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--paper); color:var(--ink);
   font-family:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size:1.0625rem; line-height:1.6; font-feature-settings:"tnum" 1;
+  font-size:1.0625rem; line-height:1.6;
 }
 img{max-width:100%; height:auto; display:block}
 a{color:var(--accent); text-underline-offset:.2em}
@@ -82,7 +82,7 @@ header.hero{padding:88px 0 64px; border-bottom:1px solid var(--rule)}
 .story li + li{margin-top:4px}
 .results{display:flex; flex-wrap:wrap; gap:12px 40px; margin:28px 0 0; padding:20px 0 0; border-top:1px solid var(--rule)}
 .results div{min-width:120px}
-.results strong{display:block; font-size:1.75rem; letter-spacing:-.02em; line-height:1.1}
+.results strong{display:block; font-variant-numeric:tabular-nums; font-size:1.75rem; letter-spacing:-.02em; line-height:1.1}
 .results span{font-size:.9rem; color:var(--muted)}
 
 /* Experience timeline */
@@ -251,7 +251,7 @@ dialog .close{
   <!-- 6 -->
   <article class="case" id="hetzner-dokploy">
     <div class="meta">
-      <span class="org">Creator subscription platform</span>Contract, 2025–present
+      <span class="org">Creator subscription platform</span>Part-time, 2025–present
       <ul><li>Hetzner</li><li>Dokploy</li><li>Docker Swarm</li><li>Traefik</li><li>OpenTelemetry</li><li>Grafana</li></ul>
     </div>
     <div>
@@ -296,7 +296,7 @@ dialog .close{
     <p>Six years running production infrastructure for media, gaming and enterprise clients.</p>
   </div>
   <ol class="timeline" reversed>
-    <li><span class="when">Nov 2025 – present</span><span><span class="role">DevOps Engineer (contract)</span><br><span class="org">Nusa Crew, for a creator subscription platform</span></span></li>
+    <li><span class="when">Nov 2025 – present</span><span><span class="role">DevOps Engineer (part-time)</span><br><span class="org">Nusa Crew, for a creator subscription platform</span></span></li>
     <li><span class="when">May 2025 – present</span><span><span class="role">Senior DevOps Engineer</span><br><span class="org">Merkle Indonesia (Dentsu Group)</span></span></li>
     <li><span class="when">May 2022 – Apr 2025</span><span><span class="role">Site Reliability Engineer II</span><br><span class="org">AccelByte</span></span></li>
     <li><span class="when">Jun 2021 – May 2022</span><span><span class="role">Site Reliability Engineer</span><br><span class="org">Kompas Daily</span></span></li>
