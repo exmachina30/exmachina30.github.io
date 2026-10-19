@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hakim Rizki Pratama – DevOps & Site Reliability Engineer</title>
+<meta name="description" content="Senior DevOps and site reliability engineer. Case studies in Kubernetes, Terraform, autoscaling, security hardening and observability on GCP, AWS and Azure.">
+<meta property="og:title" content="Hakim Rizki Pratama – DevOps & SRE portfolio">
+<meta property="og:description" content="Case studies in Kubernetes, Terraform, autoscaling, security hardening and observability.">
+<meta property="og:image" content="assets/01-gke-keda-autoscaling.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF0EC; --surface:#F7F9F6; --ink:#17212C; --muted:#56616C;
+  --rule:#C8D0C9; --accent:#2348C4; --accent-ink:#ffffff; --figure:#F8FAFC;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111921; --surface:#18222C; --ink:#E4EAE5; --muted:#9BA7B2;
+    --rule:#2C3844; --accent:#93AAFF; --accent-ink:#0F1726; --figure:#F8FAFC;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111921; --surface:#18222C; --ink:#E4EAE5; --muted:#9BA7B2;
+  --rule:#2C3844; --accent:#93AAFF; --accent-ink:#0F1726; --figure:#F8FAFC;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size:1.0625rem; line-height:1.6; font-feature-settings:"tnum" 1;
+}
+img{max-width:100%; height:auto; display:block}
+a{color:var(--accent); text-underline-offset:.2em}
+a:focus-visible, button:focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:4px}
+.wrap{max-width:1120px; margin:0 auto; padding:0 24px}
+
+/* Hero */
+header.hero{padding:88px 0 64px; border-bottom:1px solid var(--rule)}
+.hero h1{
+  font-size:clamp(2.6rem, 7vw, 5.4rem); line-height:.98; letter-spacing:-.035em;
+  font-weight:800; margin:0 0 28px; max-width:12ch;
+}
+.hero .lede{font-size:clamp(1.15rem, 2vw, 1.4rem); line-height:1.5; max-width:38ch; margin:0 0 12px}
+.hero .where{color:var(--muted); margin:0 0 32px}
+.actions{display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center}
+.btn{
+  display:inline-block; background:var(--accent); color:var(--accent-ink);
+  padding:12px 20px; border-radius:6px; font-weight:600; text-decoration:none;
+}
+.actions a:not(.btn){font-weight:500}
+
+/* Section headings */
+.section-head{display:grid; grid-template-columns:220px 1fr; gap:40px; padding:56px 0 8px}
+.section-head h2{font-size:1.75rem; letter-spacing:-.02em; margin:0; line-height:1.2}
+.section-head p{margin:0; color:var(--muted); max-width:60ch}
+
+/* Case studies */
+.case{display:grid; grid-template-columns:220px 1fr; gap:40px; padding:48px 0; border-bottom:1px solid var(--rule)}
+.case:last-of-type{border-bottom:0}
+.meta{font-size:.95rem; color:var(--muted)}
+.meta .org{color:var(--ink); font-weight:600; display:block}
+.meta ul{list-style:none; padding:0; margin:16px 0 0; display:flex; flex-wrap:wrap; gap:6px}
+.meta li{border:1px solid var(--rule); border-radius:4px; padding:1px 8px; font-size:.85rem}
+.case h3{font-size:clamp(1.5rem, 3vw, 2rem); line-height:1.15; letter-spacing:-.025em; margin:0 0 20px; max-width:26ch}
+.figure-btn{
+  display:block; width:100%; padding:0; border:1px solid var(--rule); border-radius:8px;
+  background:var(--figure); cursor:zoom-in; overflow:hidden; margin:0 0 28px;
+}
+.figure-hint{font-size:.85rem; color:var(--muted); margin:0 0 28px}
+.story{display:grid; grid-template-columns:repeat(3, 1fr); gap:28px}
+.story h4{font-size:1rem; margin:0 0 6px}
+.story p, .story ul{margin:0; font-size:.98rem}
+.story ul{padding-left:1.1em}
+.story li + li{margin-top:4px}
+.results{display:flex; flex-wrap:wrap; gap:12px 40px; margin:28px 0 0; padding:20px 0 0; border-top:1px solid var(--rule)}
+.results div{min-width:120px}
+.results strong{display:block; font-size:1.75rem; letter-spacing:-.02em; line-height:1.1}
+.results span{font-size:.9rem; color:var(--muted)}
+
+/* Experience timeline */
+.timeline{list-style:none; margin:0; padding:0 0 40px}
+.timeline li{display:grid; grid-template-columns:220px 1fr; gap:40px; padding:20px 0; border-bottom:1px solid var(--rule)}
+.timeline .when{color:var(--muted); font-size:.95rem}
+.timeline .role{font-weight:600}
+.timeline .org{color:var(--muted)}
+
+/* Footer */
+footer{background:var(--surface); border-top:1px solid var(--rule); padding:56px 0 64px; margin-top:24px}
+footer h2{font-size:clamp(1.8rem, 4vw, 2.6rem); letter-spacing:-.03em; margin:0 0 12px; line-height:1.1}
+footer p{margin:0 0 24px; color:var(--muted); max-width:52ch}
+.certs{margin-top:32px; font-size:.9rem; color:var(--muted)}
+
+/* Lightbox */
+dialog{
+  border:0; padding:0; max-width:min(1400px, 96vw); width:100%; background:transparent;
+}
+dialog::backdrop{background:rgba(10,15,22,.82)}
+dialog img{border-radius:8px; background:var(--figure); width:100%}
+dialog .close{
+  position:absolute; top:10px; right:10px; background:var(--ink); color:var(--paper);
+  border:0; border-radius:6px; padding:8px 14px; font:inherit; font-weight:600; cursor:pointer;
+}
+
+@media (max-width:860px){
+  .section-head, .case, .timeline li{grid-template-columns:1fr; gap:16px}
+  .story{grid-template-columns:1fr; gap:20px}
+  header.hero{padding:56px 0 48px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Hakim Rizki Pratama</h1>
+    <p class="lede">Senior DevOps and site reliability engineer. I build cloud platforms on Kubernetes and Terraform that stay up, scale ahead of traffic, and are easy for teams to ship to.</p>
+    <p class="where">Based in Jakarta, working remotely across GCP, AWS and Azure. Certified Kubernetes Administrator.</p>
+    <div class="actions">
+      <a class="btn" href="Resume_HakimRizkiPratama.pdf" download>Download resume</a>
+      <a href="mailto:hakimrizkip@gmail.com">hakimrizkip@gmail.com</a>
+      <a href="https://linkedin.com/in/hakimrp" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/exmachina30" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="section-head">
+    <h2>Selected work</h2>
+    <p>Seven projects from production systems. Client names are left out where the work is confidential. Select any diagram to see it full size.</p>
+  </div>
+
+  <!-- 1 -->
+  <article class="case" id="keda-autoscaling">
+    <div class="meta">
+      <span class="org">Merkle Indonesia</span>2025
+      <ul><li>GKE</li><li>KEDA</li><li>Pub/Sub</li><li>Cloud Monitoring</li><li>Workload Identity</li><li>Terraform</li></ul>
+    </div>
+    <div>
+      <h3>Event-driven autoscaling on GKE</h3>
+      <button class="figure-btn" data-full="assets/01-gke-keda-autoscaling.png" aria-label="Open the event-driven autoscaling diagram full size">
+        <img src="assets/01-gke-keda-autoscaling.png" alt="Architecture: Pub/Sub subscription backlog feeds a KEDA gcp-pubsub scaler that drives the Horizontal Pod Autoscaler for three GKE workloads with pre-warmed replicas, using Workload Identity." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>CPU-based autoscaling only reacted after CPU spiked, so new pods started while traffic was already hitting and users saw cold-start latency during surges.</p></div>
+        <div><h4>What I did</h4><ul><li>Scaled on Pub/Sub queue depth with KEDA’s gcp-pubsub scaler instead of CPU.</li><li>Wrote ScaledObjects for 3 production workloads and tuned pre-warmed replicas.</li><li>Used Workload Identity, with no static keys.</li></ul></div>
+        <div><h4>Result</h4><p>Capacity scales as soon as the backlog grows and is ready before load peaks, eliminating cold-start latency during sudden surges.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="case" id="load-testing">
+    <div class="meta">
+      <span class="org">Merkle Indonesia</span>2025
+      <ul><li>k6</li><li>GKE</li><li>Cloud NAT</li><li>Cloud SQL</li><li>Cloud Monitoring</li></ul>
+    </div>
+    <div>
+      <h3>Load testing a platform for 20,000+ event participants</h3>
+      <button class="figure-btn" data-full="assets/07-load-testing-event-readiness.png" aria-label="Open the load testing diagram full size">
+        <img src="assets/07-load-testing-event-readiness.png" alt="Two bastions running k6 through Cloud NAT against an HTTPS load balancer, GKE frontend and backend, and Cloud SQL, with latency dashboards, alert policies and post-event analysis." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>A live event platform needed proof it could handle more than 20,000 concurrent participants before launch day.</p></div>
+        <div><h4>What I did</h4><ul><li>Ran progressive k6 tests from two bastions, from 10 up to 1,400 virtual users.</li><li>Found and fixed Cloud NAT port exhaustion, load balancer timeouts and Cloud Armor rate-limit false positives.</li><li>Moved Cloud SQL to regional HA, and built a 9-panel latency dashboard with 4 alert policies.</li></ul></div>
+        <div><h4>Result</h4><p>0% errors at 700 sustained virtual users. Post-event analysis traced latency spikes to large JavaScript bundles, not infrastructure.</p></div>
+      </div>
+      <div class="results">
+        <div><strong>1,400</strong><span>virtual users tested</span></div>
+        <div><strong>70 ms</strong><span>P95 latency at 800 users</span></div>
+        <div><strong>4–5×</strong><span>estimated peak headroom</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="case" id="gke-security">
+    <div class="meta">
+      <span class="org">Merkle Indonesia</span>2025
+      <ul><li>GKE</li><li>Cloud Armor</li><li>Cloud SQL</li><li>VPC peering</li><li>IAM</li><li>GitLab CI</li></ul>
+    </div>
+    <div>
+      <h3>Security audit and hardening of a production GKE environment</h3>
+      <button class="figure-btn" data-full="assets/02-gke-security-hardening.png" aria-label="Open the GKE security hardening diagram full size">
+        <img src="assets/02-gke-security-hardening.png" alt="Traffic from the internet passes Cloud Armor and an HTTPS load balancer into a private VPC with a restricted GKE control plane, least-privilege node pools, private Cloud SQL and self-hosted GitLab runners." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>The audit found public endpoints without a WAF, a database reachable over a public IP, and a control plane open to shared CI runners.</p></div>
+        <div><h4>What I did</h4><ul><li>Put Cloud Armor in front with OWASP rules and geo-blocking.</li><li>Moved nodes to a least-privilege service account with Workload Identity.</li><li>Made Cloud SQL private over VPC peering, and moved CI to self-hosted runners so the control plane could be locked down.</li></ul></div>
+        <div><h4>Result</h4><p>All 6 audited controls remediated. Malicious traffic is filtered at the edge, the database is reachable only inside the VPC, and only trusted networks can reach the control plane.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 4 -->
+  <article class="case" id="observability">
+    <div class="meta">
+      <span class="org">AccelByte</span>2022–2025
+      <ul><li>AWS EKS</li><li>Prometheus</li><li>Grafana</li><li>Terraform</li><li>RDS</li><li>MSK</li></ul>
+    </div>
+    <div>
+      <h3>Observability for 100+ game backend environments</h3>
+      <button class="figure-btn" data-full="assets/03-observability-100-environments.png" aria-label="Open the observability diagram full size">
+        <img src="assets/03-observability-100-environments.png" alt="Exporters across 100+ EKS client environments feed Prometheus, which drives Grafana dashboards, on-call alerting, incident response and automated reports." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>A game backend platform serving millions of players ran 100+ client environments on AWS, and incidents needed to be caught and fixed faster.</p></div>
+        <div><h4>What I did</h4><ul><li>Built Prometheus recording and alert rules with actionable alerts routed to on-call.</li><li>Created Grafana dashboards per environment and service.</li><li>Automated OKR and launch-readiness reporting, with everything provisioned through Terraform.</li></ul></div>
+        <div><h4>Result</h4><p>Faster detection and recovery across the whole fleet while keeping a 99.9% SLA.</p></div>
+      </div>
+      <div class="results">
+        <div><strong>99.9%</strong><span>SLA maintained</span></div>
+        <div><strong>−35%</strong><span>mean time to recovery</span></div>
+        <div><strong>100+</strong><span>environments monitored</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 5 -->
+  <article class="case" id="github-migration">
+    <div class="meta">
+      <span class="org">Merkle Indonesia</span>2025
+      <ul><li>GitHub Actions</li><li>GitLab</li><li>Go</li><li>Docker</li><li>GKE</li></ul>
+    </div>
+    <div>
+      <h3>GitLab to GitHub migration with reusable CI/CD</h3>
+      <button class="figure-btn" data-full="assets/06-gitlab-to-github-migration.png" aria-label="Open the GitLab to GitHub migration diagram full size">
+        <img src="assets/06-gitlab-to-github-migration.png" alt="Repositories from GitLab and other GitHub organizations are migrated into one GitHub organization with reusable workflows and self-hosted runners deploying to private GKE." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>Client projects were spread across GitLab and several GitHub organizations, with Go imports tied to the old host, private dependencies breaking Docker builds, and hosted runners unable to reach private clusters.</p></div>
+        <div><h4>What I did</h4><ul><li>Migrated repositories with consistent client-prefix naming and rewrote Go module paths.</li><li>Added build authentication for private dependencies.</li><li>Rebuilt CI as a shared GitHub Actions workflow, run on self-hosted runners in private bastion VMs.</li></ul></div>
+        <div><h4>Result</h4><p>One GitHub organization for all client projects, standardized deploy pipelines, and secure deploys to GKE clusters whose control planes aren’t exposed to the internet.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 6 -->
+  <article class="case" id="hetzner-dokploy">
+    <div class="meta">
+      <span class="org">Creator subscription platform</span>Contract, 2025–present
+      <ul><li>Hetzner</li><li>Dokploy</li><li>Docker Swarm</li><li>Traefik</li><li>OpenTelemetry</li><li>Grafana</li></ul>
+    </div>
+    <div>
+      <h3>Self-hosted PaaS on Hetzner with Dokploy and Docker Swarm</h3>
+      <button class="figure-btn" data-full="assets/05-hetzner-dokploy-swarm.png" aria-label="Open the Hetzner and Dokploy diagram full size">
+        <img src="assets/05-hetzner-dokploy-swarm.png" alt="Git pushes trigger Dokploy builds that publish to GHCR; a Hetzner Docker Swarm with manager and worker nodes, Traefik, Redis and NATS sends telemetry to OpenTelemetry, Prometheus, Loki, Tempo and Grafana." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>A multi-node Swarm cluster had images failing to reach worker nodes, configs wiped on every redeploy, and DNS errors between services.</p></div>
+        <div><h4>What I did</h4><ul><li>Added GHCR as a private registry so every node pulls the same images.</li><li>Moved config to persistent mounts and put services on a shared overlay network.</li><li>Ran Redis with scoped ACL users and NATS JetStream, plus an OpenTelemetry, Prometheus, Loki and Tempo stack.</li></ul></div>
+        <div><h4>Result</h4><p>Git push to deploy from one dashboard, consistent rollouts on every node, and metrics, logs and traces in one place.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 7 -->
+  <article class="case" id="terraform-modules">
+    <div class="meta">
+      <span class="org">Kompas Daily</span>2021–2022
+      <ul><li>Terraform</li><li>Azure</li><li>GCP</li><li>Jenkins</li></ul>
+    </div>
+    <div>
+      <h3>Modular Terraform for Azure and GCP</h3>
+      <button class="figure-btn" data-full="assets/04-terraform-azure-gcp.png" aria-label="Open the modular Terraform diagram full size">
+        <img src="assets/04-terraform-azure-gcp.png" alt="A Terraform module library for network, compute, database, IAM and monitoring feeds a Jenkins pipeline with validate, plan, peer review and apply stages, producing matching dev, staging and prod environments on Azure and GCP." loading="lazy" width="1600" height="1200">
+      </button>
+      <div class="story">
+        <div><h4>Problem</h4><p>Environments for a national news platform were configured by hand, so they drifted apart and took hours to set up.</p></div>
+        <div><h4>What I did</h4><ul><li>Built a module library for network, compute, databases, IAM and monitoring.</li><li>Ran every change through a Jenkins pipeline: validate, plan, peer review, apply.</li><li>Built dev, staging and prod on both clouds from the same modules.</li></ul></div>
+        <div><h4>Result</h4><p>Faster, repeatable environment setup with no manual drift.</p></div>
+      </div>
+      <div class="results">
+        <div><strong>30%</strong><span>faster environment setup</span></div>
+        <div><strong>40+ hrs</strong><span>saved per month</span></div>
+        <div><strong>0</strong><span>manual config drift</span></div>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-head">
+    <h2>Experience</h2>
+    <p>Six years running production infrastructure for media, gaming and enterprise clients.</p>
+  </div>
+  <ol class="timeline" reversed>
+    <li><span class="when">Nov 2025 – present</span><span><span class="role">DevOps Engineer (contract)</span><br><span class="org">Nusa Crew, for a creator subscription platform</span></span></li>
+    <li><span class="when">May 2025 – present</span><span><span class="role">Senior DevOps Engineer</span><br><span class="org">Merkle Indonesia (Dentsu Group)</span></span></li>
+    <li><span class="when">May 2022 – Apr 2025</span><span><span class="role">Site Reliability Engineer II</span><br><span class="org">AccelByte</span></span></li>
+    <li><span class="when">Jun 2021 – May 2022</span><span><span class="role">Site Reliability Engineer</span><br><span class="org">Kompas Daily</span></span></li>
+    <li><span class="when">Jun 2020 – May 2021</span><span><span class="role">DevOps Engineer</span><br><span class="org">Omni Communication Assistant, Telkom Indonesia</span></span></li>
+  </ol>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Let’s talk about your platform</h2>
+    <p>I’m open to senior DevOps and SRE roles, remote or relocation. Email is the fastest way to reach me.</p>
+    <div class="actions">
+      <a class="btn" href="mailto:hakimrizkip@gmail.com">Email me</a>
+      <a href="Resume_HakimRizkiPratama.pdf" download>Download resume</a>
+      <a href="https://linkedin.com/in/hakimrp" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/exmachina30" rel="noopener">GitHub</a>
+    </div>
+    <p class="certs">Certified Kubernetes Administrator (CKA) and HashiCorp Terraform Associate.</p>
+  </div>
+</footer>
+
+<dialog id="lightbox" aria-label="Diagram full size">
+  <button class="close" type="button">Close</button>
+  <img src="" alt="">
+</dialog>
+
+<script>
+  const box = document.getElementById('lightbox');
+  const boxImg = box.querySelector('img');
+  document.querySelectorAll('.figure-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.querySelector('img');
+      boxImg.src = btn.dataset.full;
+      boxImg.alt = img.alt;
+      box.showModal();
+    });
+  });
+  box.querySelector('.close').addEventListener('click', () => box.close());
+  box.addEventListener('click', e => { if (e.target === box) box.close(); });
+</script>
+</body>
+</html>
